@@ -1,9 +1,9 @@
 package exercise2;
 
-import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import com.google.protobuf.CodedInputStream;
+import com.google.protobuf.CodedOutputStream;
+
+import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
@@ -12,8 +12,8 @@ public class Client2 {
 
     private final String ip;
     private final int port;
-    private BufferedOutputStream os;
-    private BufferedReader is;
+    private OutputStream os;
+    private CodedInputStream is;
     Socket socket;
     exercise2.Message message;
     int name_client;
@@ -29,11 +29,13 @@ public class Client2 {
     public void readServerResponse() {
         try {
             socket = new Socket(this.ip, this.port);
-            os = new BufferedOutputStream(socket.getOutputStream());
-            is = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            is = CodedInputStream.newInstance(this.socket
+                    .getInputStream());
+            os = (this.socket.getOutputStream());
             System.out.println("Client is trying to connect to " + this.ip + ":" + this.port);
             Scanner scanner = new Scanner(System.in);
             String inputString = "";
+
             while (!inputString.equals("end")) {
                 String to;
                 System.out.println("insert the receiver");
@@ -41,14 +43,17 @@ public class Client2 {
                 System.out.println("insert the message");
                 inputString = scanner.nextLine();
                 message = exercise2.Message.newBuilder().setFr(this.name_client).setTo(Integer.parseInt(to)).setMsg(inputString).build();
-                System.out.println("input string: " + inputString);
+                //System.out.println("input string: " + inputString);
                 //os.writeBytes(inputString + "\n");
                 //os.flush();
-                message.writeTo(os);
+                byte[
+                        ]message_byte=message.toByteArray();
+                os.write(message_byte);
+
                 os.flush();
 
                 //os.write(message.toString().getBytes());
-                System.out.println(is.readLine());
+                //System.out.println(is.readLine());
                 //System.out.println("Insert another string");
 
             }

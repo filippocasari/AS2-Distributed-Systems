@@ -1,4 +1,4 @@
-package src.exercise2;
+package exercise2;
 import javax.swing.*;
 import java.awt.*;
 

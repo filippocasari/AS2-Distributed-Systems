@@ -1,7 +1,6 @@
-package src.exercise2;
+package exercise2;
 
-import java.io.BufferedReader;
-import java.io.IOException;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -11,6 +10,8 @@ public class Server {
     private ServerSocket server = null;
 
     private BufferedReader in = null;
+    PrintWriter out;
+    exercise2.Message message;
     public Socket s;
     private final int min = 0;
     private final int max = 1000;
@@ -21,22 +22,26 @@ public class Server {
 
             server = new ServerSocket(port);
             System.out.println("Server started");
-            OperatorThread operator = new OperatorThread();
+            exercise2.OperatorThread operator = new exercise2.OperatorThread();
 
             operator.start();
             while (true) {
 
                 s = server.accept();
 
+                //message = Message.newBuilder().build();
+                /*
                 int id;
-                id = min + (int) (Math.random() * ((max - min) + 1));
+                id = Integer.parseInt(in.readLine());;
+
                 while (list_clients.contains(id)) {
-                    id = min + (int) (Math.random() * ((max - min) + 1));
+                    out.println("Insert a new id, this one is already present");
+                    id = Integer.parseInt(in.readLine());;
                 }
-                list_clients.add(id);
+                list_clients.add(id);*/
                 System.out.println("connection Established");
-                System.out.println("Just connected with the id client " + id);
-                Thread r = new HandlingClientThread(s, id, operator);
+                //System.out.println("Just connected with the id client " + id);
+                Thread r = new exercise2.HandlingClientThread(s, operator);
                 r.start();
             }
 
