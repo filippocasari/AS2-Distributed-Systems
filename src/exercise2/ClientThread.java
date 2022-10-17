@@ -1,13 +1,16 @@
 package exercise2;
 
 import java.io.IOException;
+import java.util.concurrent.Semaphore;
 
 public class ClientThread extends Thread{
     String ip;
     int port;
+
     public ClientThread(String ip, int port) {
         this.ip =ip;
         this.port=port;
+
     }
     public void run() {
         Client2 client = null;

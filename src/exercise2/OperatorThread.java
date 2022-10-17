@@ -1,28 +1,49 @@
 package exercise2;
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class OperatorThread extends Thread{
     JTextField txt;
+    JTextField list;
     int num_clients=0;
     JFrame frame;
     public List<Integer> list_clients = new ArrayList<Integer>();
     public OperatorThread() {
         frame = new JFrame("Server Operator Thread");
+        JPanel panel = new JPanel();
+        Border border = BorderFactory.createLineBorder(Color.BLUE, 5);
+
+        frame.add(panel);
+        panel.setOpaque(true); // content panes must be opaque
+        panel.setBorder(new TitledBorder(new EtchedBorder(),
+                "Clients Monitor"));
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(300,300);
         txt = new JTextField("clients connected: "+num_clients+"  ");
+        txt.setBorder(border);
         //mb.add(m1);
-        txt.setBackground(Color.black);
+        //txt.setBackground(Color.black);
         txt.setFont(new Font("verdana", Font.BOLD, 15));
-        txt.setForeground(Color.white);
-        frame.add(txt);
+        //txt.setForeground(Color.white);
+        panel.add(txt);
+        list = new JTextField("List of client ids: \t\t\t\t\t\t\t\t");
+        list.setBounds(new Rectangle(0,0,100, 200));
+        panel.add(list);
+        GridBagConstraints c = new GridBagConstraints();
+        c.weightx=10.0;
+        c.fill=GridBagConstraints.HORIZONTAL;
+        panel.add(list,c);
 
+        frame.add(panel, BorderLayout.NORTH);
         //JButton button1 = new JButton("Press");
         //frame.getContentPane().add(button1);
+        frame.pack();
         frame.setVisible(true);
 
     }
@@ -38,6 +59,7 @@ public class OperatorThread extends Thread{
 
         txt.setText("clients connected: "+this.num_clients+"  ");
         System.out.println("List of clients"+this.list_clients);
+        list.setText("List of client ids: \t"+ this.list_clients);
         //frame.add(txt);
         //SwingUtilities.updateComponentTreeUI(frame);
         //frame.revalidate();
@@ -49,18 +71,21 @@ public class OperatorThread extends Thread{
     public synchronized void oneLessClient(int client_id){
 
         try{
-            list_clients.remove(client_id);
+            list_clients.remove((Integer) client_id);
             this.num_clients--;
-            System.out.println("List of clients"+this.list_clients);
+            System.out.println("List of clients\t"+this.list_clients);
+            System.out.println("removing one client ");
+
+            txt.setText("clients connected: "+this.num_clients+"  ");
+            list.setText("List of client ids: \t"+ this.list_clients);
         }
         catch (Exception e){
             System.out.println("id not present in the list");
+            e.printStackTrace(System.err);
 
         }
 
-        System.out.println("removing one client ");
 
-        txt.setText("clients connected: "+this.num_clients+"  ");
 
 
         //frame.revalidate();
