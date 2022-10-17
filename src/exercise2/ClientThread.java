@@ -1,7 +1,6 @@
 package exercise2;
 
 import java.io.IOException;
-import java.util.concurrent.Semaphore;
 
 public class ClientThread extends Thread{
     String ip;
@@ -13,7 +12,7 @@ public class ClientThread extends Thread{
 
     }
     public void run() {
-        Client2 client = null;
+        Client2 client;
         try {
             client = new Client2(this.ip, this.port);
         } catch (IOException e) {

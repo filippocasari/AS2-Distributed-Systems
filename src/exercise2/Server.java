@@ -3,22 +3,17 @@ package exercise2;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Queue;
-import java.util.concurrent.ConcurrentLinkedQueue;
+
 
 public class Server {
     private ServerSocket server = null;
 
-    private BufferedReader in = null;
-    PrintWriter out;
-    exercise2.Message message;
+
+
     public Socket s;
-    private final int min = 0;
-    private final int max = 1000;
+
     //ConcurrentLinkedQueue<Integer> global_clients_Queue = new ConcurrentLinkedQueue<Integer>();
-    public Server(int port) throws IOException {
+    public Server(int port) throws IOException{
 
         try {
 

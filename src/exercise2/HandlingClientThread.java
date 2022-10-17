@@ -2,7 +2,6 @@ package exercise2;
 
 import java.io.*;
 import java.net.Socket;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class HandlingClientThread extends Thread {
 
@@ -15,11 +14,11 @@ public class HandlingClientThread extends Thread {
     Socket s;
     OperatorThread operatorThread;
     Message message;
-    ConcurrentLinkedQueue<Integer> list_clients;
+
 
     public HandlingClientThread(Socket socket, OperatorThread operatorThread) {
         this.s = socket;
-        this.list_clients=list_clients;
+
         //this.id = id;
         this.operatorThread = operatorThread;
     }
@@ -36,7 +35,7 @@ public class HandlingClientThread extends Thread {
         } catch (IOException e) {
             System.out.println("IO error in server thread");
         }
-        MessageHandShake messageHandShake = null;
+        MessageHandShake messageHandShake;
         try {
             messageHandShake = MessageHandShake.parseDelimitedFrom(this.in);
         } catch (IOException e) {
@@ -70,8 +69,7 @@ public class HandlingClientThread extends Thread {
                 reply = Message.newBuilder().setMsg(msg).setFr(this.id_server).setTo(from).build();
                 reply.writeDelimitedTo(out);
                 out.flush();
-                //reply.writeTo(os);
-                //os.flush();
+
                 message = Message.parseDelimitedFrom(this.in);
                 from = message.getFr();
                 to = message.getTo();
@@ -93,9 +91,7 @@ public class HandlingClientThread extends Thread {
 
         }//end finally
     }
-    public ConcurrentLinkedQueue<Integer> getList_clients(){
-        return this.list_clients;
-    }
+
 
 
 }

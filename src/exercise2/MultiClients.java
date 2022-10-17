@@ -2,16 +2,14 @@ package exercise2;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.concurrent.Semaphore;
+
 
 public class MultiClients {
-    int num_clients=1;
-    String ip;
-    int port;
+    int num_clients;
+
     ArrayList<ClientThread> list_clients;
     //Semaphore mutex=new Semaphore(1);
-    public MultiClients(String ip, int port, int num_clients) throws IOException, InterruptedException {
+    public MultiClients(String ip, int port, int num_clients) throws InterruptedException {
         this.num_clients = num_clients;
         list_clients = new ArrayList<ClientThread>();
         for(int i=0; i< num_clients; i++){

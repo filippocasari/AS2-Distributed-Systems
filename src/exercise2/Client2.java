@@ -1,8 +1,5 @@
 package exercise2;
 
-import com.google.protobuf.CodedInputStream;
-import com.google.protobuf.CodedOutputStream;
-
 import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;
@@ -47,7 +44,7 @@ public class Client2 {
                     return ;
                 }
                 else {
-                    System.out.println("ACK from server:\n"+reply_HandShake.toString());
+                    System.out.println("ACK from server:\n"+reply_HandShake);
                 }
             }catch (Exception e){
                 System.err.println("error while establish connection"+ e);
