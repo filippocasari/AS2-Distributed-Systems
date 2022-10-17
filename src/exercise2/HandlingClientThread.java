@@ -5,9 +5,7 @@ import java.net.Socket;
 
 public class HandlingClientThread extends Thread {
 
-    //private int id = 0;
     public final int id_server = 1;
-
     String line = null;
     InputStream in ;
     OutputStream out ;
@@ -15,7 +13,12 @@ public class HandlingClientThread extends Thread {
     OperatorThread operatorThread;
     Message message;
 
-
+    /**
+     * Set the client thread.
+     * <p>
+     *
+     * 2022-10-17
+     */
     public HandlingClientThread(Socket socket, OperatorThread operatorThread) {
         this.s = socket;
 
@@ -23,12 +26,17 @@ public class HandlingClientThread extends Thread {
         this.operatorThread = operatorThread;
     }
 
+    /**
+     * Run thread.
+     * <p>
+     *
+     * 2022-10-17
+     */
     public void run() {
 
         System.out.println("starting thread to handle client");
         try {
-            /*is = CodedInputStream.newInstance(this.s
-                    .getInputStream());*/
+
             this.in = this.s.getInputStream();
             this.out = this.s.getOutputStream();
 
@@ -87,7 +95,6 @@ public class HandlingClientThread extends Thread {
         } finally {
             operatorThread.oneLessClient(id_client);
             System.out.println("Connection Closing..");
-
 
         }//end finally
     }

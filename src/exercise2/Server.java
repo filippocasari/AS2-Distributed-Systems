@@ -4,15 +4,11 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-
 public class Server {
     private ServerSocket server = null;
 
-
-
     public Socket s;
 
-    //ConcurrentLinkedQueue<Integer> global_clients_Queue = new ConcurrentLinkedQueue<Integer>();
     public Server(int port) throws IOException{
 
         try {
@@ -41,13 +37,6 @@ public class Server {
                 exercise2.HandlingClientThread r = new exercise2.HandlingClientThread(s, operator);
                 r.start();
 
-
-
-                /*
-                if(!r.isAlive()){
-                    this.global_clients_Queue = r.getList_clients();
-                }*/
-
             }
 
         } catch (IOException e) {
@@ -60,7 +49,7 @@ public class Server {
     public static void main(String[] args) throws IOException {
         if (args.length != 1) {
             System.out.println("Usage: server [port]");
-            System.exit(0);
+
         }
         Server server = new Server(Integer.parseInt(args[0]));
 

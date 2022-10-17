@@ -13,6 +13,13 @@ public class OperatorThread extends Thread{
     int num_clients=0;
     JFrame frame;
     public List<Integer> list_clients = new ArrayList<Integer>();
+
+    /**
+     * Generate the operator thread .
+     * <p>
+     *
+     * 2022-10-17
+     */
     public OperatorThread() {
         frame = new JFrame("Server Operator Thread");
         JPanel panel = new JPanel();
@@ -27,10 +34,7 @@ public class OperatorThread extends Thread{
         frame.setSize(300,300);
         txt = new JTextField("clients connected: "+num_clients+"  ");
         txt.setBorder(border);
-        //mb.add(m1);
-        //txt.setBackground(Color.black);
         txt.setFont(new Font("verdana", Font.BOLD, 15));
-        //txt.setForeground(Color.white);
         panel.add(txt);
         list = new JTextField("List of client ids: \t\t\t\t\t\t\t\t");
         list.setBounds(new Rectangle(0,0,100, 200));
@@ -41,12 +45,18 @@ public class OperatorThread extends Thread{
         panel.add(list,c);
 
         frame.add(panel, BorderLayout.NORTH);
-        //JButton button1 = new JButton("Press");
-        //frame.getContentPane().add(button1);
+
         frame.pack();
         frame.setVisible(true);
 
     }
+
+    /**
+     * Add one more client
+     * <p>
+     *
+     * 2022-10-17
+     */
     public synchronized boolean oneMoreClient(int id_client){
 
         if(list_clients.contains(id_client)){
@@ -68,6 +78,14 @@ public class OperatorThread extends Thread{
         frame.repaint();
         return true;
     }
+
+
+    /**
+     * Clear one client.
+     * <p>
+     *
+     * 2022-10-17
+     */
     public synchronized void oneLessClient(int client_id){
 
         try{

@@ -6,11 +6,23 @@ public class ClientThread extends Thread{
     String ip;
     int port;
 
+    /**
+     * Create a client thread.
+     * <p>
+     * 2022-10-17
+     */
     public ClientThread(String ip, int port) {
         this.ip =ip;
         this.port=port;
 
     }
+
+    /**
+     * Run the server.
+     * <p>
+     *
+     * 2022-10-17
+     */
     public void run() {
         Client2 client;
         try {
