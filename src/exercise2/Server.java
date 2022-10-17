@@ -5,6 +5,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class Server {
     private ServerSocket server = null;
@@ -15,9 +17,9 @@ public class Server {
     public Socket s;
     private final int min = 0;
     private final int max = 1000;
-
+    //ConcurrentLinkedQueue<Integer> global_clients_Queue = new ConcurrentLinkedQueue<Integer>();
     public Server(int port) throws IOException {
-        List<Integer> list_clients = new ArrayList<Integer>();
+
         try {
 
             server = new ServerSocket(port);
@@ -41,8 +43,16 @@ public class Server {
                 list_clients.add(id);*/
                 System.out.println("connection Established");
                 //System.out.println("Just connected with the id client " + id);
-                Thread r = new exercise2.HandlingClientThread(s, operator);
+                exercise2.HandlingClientThread r = new exercise2.HandlingClientThread(s, operator);
                 r.start();
+
+
+
+                /*
+                if(!r.isAlive()){
+                    this.global_clients_Queue = r.getList_clients();
+                }*/
+
             }
 
         } catch (IOException e) {
