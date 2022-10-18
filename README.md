@@ -5,7 +5,9 @@
 ## Exercise 1
 
 
-## Exercise 2
+## Exercise 2 & 3
+I implemented ex 2 and 3 together. 
+
 Remember that you need to run the following commends into the dir:
 ```
 out/production/DistributedSystems2
