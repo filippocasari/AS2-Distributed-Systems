@@ -15,11 +15,11 @@ out/production/DistributedSystems2
 
 For running the client
 ```
-java -cp protobuf/protobuf-java-3.21.7.jar:. exercise2.Client2 0.0.0.0 8080
+java -cp protobuf/protobuf-java-3.21.7.jar:. exercise2.Client2 0.0.0.0 [port]
 ```
 For running the server
 ```
-java -cp protobuf/protobuf-java-3.21.7.jar:. exercise2.Server 8080
+java -cp protobuf/protobuf-java-3.21.7.jar:. exercise2.Server [port]
 ```
 
 If the dir "protobuf" is not present, download it from
