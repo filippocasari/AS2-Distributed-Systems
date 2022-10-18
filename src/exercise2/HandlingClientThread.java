@@ -73,7 +73,7 @@ public class HandlingClientThread extends Thread {
             Message reply;
             while (msg.compareTo("end") != 0) {
 
-                System.out.println("client " + from+ " replied to: " +to+ ": "+ msg);
+                System.out.println("client " + from+ " replied to client: " +to+ ": "+ msg);
                 reply = Message.newBuilder().setMsg(msg).setFr(this.id_server).setTo(from).build();
                 reply.writeDelimitedTo(out);
                 out.flush();
