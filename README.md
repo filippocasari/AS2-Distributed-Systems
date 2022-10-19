@@ -3,7 +3,7 @@
 @author: Filippo Casari
 
 ## Exercise 1
-
+Added operatorThread class that opens a gui windows showing the user how many clients are connected. 
 
 ## Exercise 2 & 3
 I implemented ex 2 and 3 together. 
