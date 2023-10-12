@@ -8,7 +8,7 @@ Added operatorThread class that opens a gui windows showing the user how many cl
 ## Exercise 2 & 3
 I implemented ex 2 and 3 together. 
 
-Remember that you need to run the following commends into the dir:
+Remember that you need to run the following command into the dir called:
 ```
 out/production/DistributedSystems2
 ```
